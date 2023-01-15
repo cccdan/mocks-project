@@ -4,27 +4,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 
+@ExtendWith(MockitoExtension.class)
 class WeeklyReportsBatchJobTest {
 
     @Mock
     private EmailSender emailSenderMock;
-
-    AutoCloseable closeable;
-
-    @BeforeEach
-    public void setupMocks() {
-        closeable = openMocks(this);
-    }
-
-    @AfterEach
-    public void releaseMocks() throws Exception {
-        closeable.close();
-    }
 
     @Test
     public void testGenerateWeeklyReport_singleRecipient() {
